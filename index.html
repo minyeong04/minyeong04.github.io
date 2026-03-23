@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심민영 포트폴리오</title>
+    <style>
+        /* 1. 기본 스타일 설정 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 2. 네비게이션 */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            height: 80px;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: #10b981; /* 메인 초록색 */
+        }
+
+        /* 3. 히어로 섹션 */
+        .hero {
+            padding: 120px 10%;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: #10b981;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .hero h2 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 span {
+            color: #10b981;
+            background: linear-gradient(to right, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: #10b981;
+        }
+
+        .info-card h3 {
+            color: #10b981;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        /* 4. 프로젝트 섹션 */
+        .projects {
+            padding: 100px 10%;
+            background-color: #050505;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            group;
+        }
+
+        .project-image {
+            aspect-ratio: 16/9;
+            background: #111;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 24px;
+            transition: 0.4s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: translateY(-10px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        /* 5. 스킬 섹션 */
+        .skills {
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .skill-tag {
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: #10b981;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* 6. 푸터 */
+        footer {
+            padding: 80px 10%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            nav { padding: 0 5%; }
+            .hero h2 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo"><span>PORTFOLIO</span> SIM MIN YOUNG</div>
+    </nav>
+
+    <section class="hero">
+        <span class="badge">COMPUTER ENGINEERING</span>
+        <h2>DESIGNING<br><span>USER EXPERIENCE</span></h2>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Education</h3>
+                <p>한라대학교 컴퓨터공학과</p>
+                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 5px;">ID: 202334015</p>
+            </div>
+            <div class="info-card">
+                <h3>Interests</h3>
+                <p>앱/웹 프론트 제작</p>
+                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 5px;">UI/UX & Interactive Design</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <h3 class="section-title">PROJECTS</h3>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image">🖨️</div>
+                <h4>3D 프린터 대행 서비스</h4>
+                <p>졸업작품 | 사용자 도면 기반 제작 및 배송 플랫폼 개발. 메인 인터페이스와 서비스 로직을 담당했습니다.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(45deg, #111, #064e3b);">🎮</div>
+                <h4>3D 횡스크롤 게임</h4>
+                <p>Unity | 3D 액션 게임 제작 프로젝트. <strong>메인 디자인 담당</strong>으로 비주얼 정체성과 UI를 구축했습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h3 style="color: rgba(255,255,255,0.3); font-size: 0.8rem; letter-spacing: 3px;">TECH STACK</h3>
+        <div class="skill-list">
+            <div class="skill-tag">C</div>
+            <div class="skill-tag">C++</div>
+            <div class="skill-tag">C#</div>
+            <div class="skill-tag">Java</div>
+            <div class="skill-tag">Python</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">SIM MIN YOUNG</div>
+        <p class="copyright">© 2026 SIM MIN YOUNG. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
