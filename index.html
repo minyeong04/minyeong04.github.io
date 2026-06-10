@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>심민영</title>
+    <title>심민영 포트폴리오</title>
     <style>
         /* 1. 기본 스타일 설정 */
         * {
@@ -12,7 +12,6 @@
             box-sizing: border-box;
         }
 
-        /* 부드러운 스크롤 이동 효과 */
         html {
             scroll-behavior: smooth;
         }
@@ -53,7 +52,7 @@
         }
 
         .nav-logo span {
-            color: #10b981; /* 메인 초록색 */
+            color: #10b981;
             margin-right: 6px;
         }
 
@@ -217,16 +216,6 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .project-card.upcoming .project-image {
-            border-style: dashed;
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.01);
-        }
-        
-        .project-card.upcoming:hover .project-image {
-            border-color: rgba(16, 185, 129, 0.6);
-        }
-
         .project-card h4 {
             font-size: 1.35rem;
             margin-bottom: 12px;
@@ -307,7 +296,7 @@
             transform: scale(1.05);
         }
 
-        /* 6. [신규 추가] 크롬 브라우저 스타일 시연용 모달 시스템 */
+        /* 6. 크롬 모달창 아키텍처 */
         .chrome-modal {
             display: none;
             position: fixed;
@@ -322,6 +311,7 @@
         .chrome-window {
             width: 100%;
             max-width: 550px;
+            height: 620px;
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
@@ -330,7 +320,6 @@
             flex-direction: column;
         }
 
-        /* 크롬 상단 바 헤더 테마 구현 */
         .chrome-header {
             background: #dee1e6;
             padding: 10px 16px;
@@ -367,12 +356,11 @@
             white-space: nowrap;
         }
 
-        .chrome-content-body {
+        .chrome-iframe {
+            width: 100%;
+            flex-grow: 1;
+            border: none;
             background: #fff;
-            padding: 30px;
-            max-height: 80vh;
-            overflow-y: auto;
-            color: #333;
         }
 
         /* 7. 푸터 */
@@ -394,7 +382,6 @@
             letter-spacing: 1px;
         }
 
-        /* 반응형 */
         @media (max-width: 768px) {
             nav { padding: 0 5%; }
             .nav-menu { gap: 15px; }
@@ -407,7 +394,7 @@
 <body>
 
     <nav>
-        <div class="nav-logo"><span>HALLA</span> SIM MIN YEONG</div>
+        <div class="nav-logo"><span>PORTFOLIO</span> SIM MIN YEONG</div>
         <ul class="nav-menu">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -479,11 +466,11 @@
                 <div class="project-image" style="background: linear-gradient(135deg, #111, #4c1d95);">⚡</div>
                 <span class="card-badge">Class Assignment</span>
                 <h4>JavaScript 전공 과제</h4>
-                <p>University Works | DOM 동적 제어 및 이벤트 처리를 학습하기 위한 자바스크립트 애플리케이션 시리즈. <strong>크롬 시연 환경</strong>을 구현하여 기능들을 즉시 테스트해 볼 수 있습니다.</p>
+                <p>University Works | DOM 동적 제어 및 이벤트 처리를 학습하기 위한 자바스크립트 애플리케이션 시리즈입니다. 깃허브 저장소 내부의 HTML 파일을 연동하여 브라우저 환경에서 시연합니다.</p>
                 <div class="project-links">
-                    <button class="btn-link" onclick="openChrome('calc')">🧮 계산기 작동</button>
-                    <button class="btn-link" onclick="openChrome('cal')">📅 달력 작동</button>
-                    <button class="btn-link" onclick="openChrome('gamble')">🎰 갬블링 작동</button>
+                    <button class="btn-link" onclick="openChrome('calculating machine.html')">🧮 계산기 작동</button>
+                    <button class="btn-link" onclick="openChrome('calendar.html')">📅 달력 작동</button>
+                    <button class="btn-link" onclick="openChrome('GambleGane.html')">🎰 갬블링 작동</button>
                 </div>
             </div>
         </div>
@@ -510,198 +497,46 @@
                     <div class="chrome-dot dot-min"></div>
                     <div class="chrome-dot dot-max"></div>
                 </div>
-                <div id="chromeAddress" class="chrome-address-bar">chrome://extensions/sim-min-young/assignment.html</div>
+                <div id="chromeAddress" class="chrome-address-bar">https://minyeong04.github.io/</div>
             </div>
-            <div id="chromeBody" class="chrome-content-body">
-                </div>
+            <iframe id="chromeIframe" class="chrome-iframe" src=""></iframe>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">SIM MIN YENOG</div>
-        <p class="copyright">© 2026 SIM MIN YEONG. ALL RIGHTS RESERVED.</p>
+        <div class="footer-logo">SIM MIN YOUNG</div>
+        <p class="copyright">© 2026 SIM MIN YOUNG. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
-        function openChrome(appType) {
+        // 현재 브라우저의 도메인(깃허브 주소 등)을 감지하여 안전하게 바인딩하는 스크립트
+        function openChrome(fileName) {
             const modal = document.getElementById('chromeModal');
-            const body = document.getElementById('chromeBody');
+            const iframe = document.getElementById('chromeIframe');
             const address = document.getElementById('chromeAddress');
             
-            body.innerHTML = ''; // 초기화
-
-            if (appType === 'calc') {
-                address.innerText = "https://localhost:3000/calculating-machine.html";
-                body.innerHTML = `
-                    <div style="font-family: sans-serif; max-width: 350px; margin: 0 auto;">
-                        <h2 style="text-align: center; color: #333; margin-bottom:10px; font-size:1.4rem;">자바스크립트 계산기</h2>
-                        <div style="background-color: #f4f4f4; border: 2px solid #ccc; padding: 15px; border-radius: 10px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
-                            <input id="display" type="text" readonly style="width: 100%; height: 50px; text-align: right; font-size: 1.8em; margin-bottom: 15px; padding: 5px; box-sizing: border-box; border: 1px solid #aaa; background: #fff; color:#000;">
-                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                                <button onclick="clearDisplay()" style="grid-column: span 2; height: 50px; font-size: 1.2em; font-weight: bold; background: #ff8a80; cursor: pointer; border:1px solid #bbb;">C</button>
-                                <button onclick="appendValue('/')" style="height: 50px; font-size: 1.2em; background: #e0e0e0; cursor: pointer; border:1px solid #bbb;">/</button>
-                                <button onclick="appendValue('*')" style="height: 50px; font-size: 1.2em; background: #e0e0e0; cursor: pointer; border:1px solid #bbb;">*</button>
-                                <button onclick="appendValue('7')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">7</button>
-                                <button onclick="appendValue('8')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">8</button>
-                                <button onclick="appendValue('9')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">9</button>
-                                <button onclick="appendValue('-')" style="height: 50px; font-size: 1.2em; background: #e0e0e0; cursor: pointer; border:1px solid #bbb;">-</button>
-                                <button onclick="appendValue('4')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">4</button>
-                                <button onclick="appendValue('5')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">5</button>
-                                <button onclick="appendValue('6')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">6</button>
-                                <button onclick="appendValue('+')" style="height: 50px; font-size: 1.2em; background: #e0e0e0; cursor: pointer; border:1px solid #bbb;">+</button>
-                                <button onclick="appendValue('1')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">1</button>
-                                <button onclick="appendValue('2')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">2</button>
-                                <button onclick="appendValue('3')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">3</button>
-                                <button onclick="calculate()" style="grid-row: span 2; height: 110px; font-size: 1.5em; background: #80f1b2; font-weight: bold; cursor: pointer; border:1px solid #bbb;">=</button>
-                                <button onclick="appendValue('0')" style="grid-column: span 2; height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">0</button>
-                                <button onclick="appendValue('.')" style="height: 50px; font-size: 1.2em; background: #fff; cursor: pointer; border:1px solid #bbb;">.</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                window.display = document.getElementById("display");
-            } 
+            // 깃허브 배포 주소 및 로컬 호스트 주소 유연성 매핑
+            const currentOrigin = window.location.origin;
+            const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
             
-            else if (appType === 'cal') {
-                address.innerText = "https://localhost:3000/calendar.html";
-                body.innerHTML = `
-                    <div style="font-family: sans-serif; max-width: 450px; margin: 0 auto;">
-                        <h2 style="text-align: center; color: #333; margin-bottom:15px; font-size:1.4rem;">자바스크립트 달력</h2>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 10px;">
-                            <button onclick="moveMonth(-1)" style="font-size: 1.2em; padding: 5px 10px; cursor: pointer; background: #f0f0f0; border: 1px solid #ccc;">◀</button>
-                            <h3 id="calendarTitle" style="margin: 0; font-size: 1.3em; color: #222;">2026년 06월</h3>
-                            <button onclick="moveMonth(1)" style="font-size: 1.2em; padding: 5px 10px; cursor: pointer; background: #f0f0f0; border: 1px solid #ccc;">▶</button>
-                        </div>
-                        <table style="width: 100%; border-collapse: collapse; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color:#333;">
-                            <thead>
-                                <tr style="background-color: #eee; height: 40px; font-weight: bold;">
-                                    <th style="color: red; width: 14.2%;">일</th>
-                                    <th style="width: 14.2%;">월</th>
-                                    <th style="width: 14.2%;">화</th>
-                                    <th style="width: 14.2%;">수</th>
-                                    <th style="width: 14.2%;">목</th>
-                                    <th style="width: 14.2%;">금</th>
-                                    <th style="color: blue; width: 14.2%;">토</th>
-                                </tr>
-                            </thead>
-                            <tbody id="calendarBody" style="font-size: 1.1em;"></tbody>
-                        </table>
-                    </div>
-                `;
-                window.currentDate = new Date();
-                renderCalendar();
-            } 
+            // iframe에 상대 경로 매핑 처리
+            iframe.src = "./" + fileName; 
             
-            else if (appType === 'gamble') {
-                address.innerText = "https://localhost:3000/GambleGame.html";
-                body.innerHTML = `
-                    <div style="font-family: sans-serif; text-align:center; max-width: 500px; margin: 0 auto;">
-                        <h2 style="margin-bottom: 5px; color:#333; font-size:1.4rem;">갬블링 게임</h2>
-                        <p style="margin-top: 0; font-size: 0.9em; color: #666; line-height: 1.4;">각 숫자를 클릭하면 난수로 바뀝니다. 모두 같은 수가 나오면 승리!</p>
-                        <div style="border: 1px solid #7a42a0; background-color: white; padding: 10px 20px; display: inline-block; white-space: nowrap; letter-spacing: 20px; font-size: 3rem; font-weight: bold; color: blue; font-style: italic; user-select: none; margin-top:10px;">
-                            <span id="num0" onclick="changeNumber(0)" style="cursor: pointer;">0</span>
-                            <span id="num1" onclick="changeNumber(1)" style="cursor: pointer;">0</span>
-                            <span id="num2" onclick="changeNumber(2)" style="cursor: pointer; margin-right: -20px;">0</span>
-                        </div>
-                        <div id="result" onclick="resetGame()" style="margin-top: 15px; font-size: 1.1em; font-style: italic; cursor: pointer; user-select: none; min-height:24px; font-weight:bold;"></div>
-                    </div>
-                `;
-                window.clicked = [false, false, false];
-                window.values = [0, 0, 0];
-            }
+            // 크롬 가상 주소창 문자열 가공 처리
+            address.innerText = currentOrigin + currentPath + "/" + encodeURIComponent(fileName);
 
             modal.style.display = 'flex';
         }
 
         function closeChrome() {
-            document.getElementById('chromeModal').style.display = 'none';
+            const modal = document.getElementById('chromeModal');
+            const iframe = document.getElementById('chromeIframe');
+            iframe.src = ""; 
+            modal.style.display = 'none';
         }
 
         function closeChromeOnOuter(e) {
             if (e.target.id === 'chromeModal') closeChrome();
-        }
-
-        /* 1) 계산기 핵심 인터랙션 로직 */
-        function appendValue(val) {
-            window.display.value += val;
-        }
-        function clearDisplay() {
-            window.display.value = "";
-        }
-        function calculate() {
-            try {
-                if(window.display.value !== "") {
-                    window.display.value = eval(window.display.value);
-                }
-            } catch (error) {
-                window.display.value = "Error";
-            }
-        }
-
-        /* 2) 달력 동적 바인딩 로직 */
-        function renderCalendar() {
-            let year = window.currentDate.getFullYear();
-            let month = window.currentDate.getMonth();
-            document.getElementById("calendarTitle").innerText = year + "년 " + String(month + 1).padStart(2, '0') + "월";
-            let firstDayIndex = new Date(year, month, 1).getDay();
-            let lastDate = new Date(year, month + 1, 0).getDate();
-            let calendarBody = document.getElementById("calendarBody");
-            calendarBody.innerHTML = "";
-            let dateCounter = 1;
-            let htmlHTML = "";
-
-            for (let i = 0; i < 6; i++) {
-                let row = "<tr style='height: 45px; border-bottom: 1px solid #eee;'>";
-                for (let j = 0; j < 7; j++) {
-                    if (i === 0 && j < firstDayIndex) {
-                        row += "<td></td>";
-                    } else if (dateCounter > lastDate) {
-                        row += "<td></td>";
-                    } else {
-                        let colorStyle = "color:#333;";
-                        if (j === 0) colorStyle = "color: red;";
-                        else if (j === 6) colorStyle = "color: blue;";
-                        row += `<td style='${colorStyle}'>${dateCounter}</td>`;
-                        dateCounter++;
-                    }
-                }
-                row += "</tr>";
-                htmlHTML += row;
-                if (dateCounter > lastDate) break;
-            }
-            calendarBody.innerHTML = htmlHTML;
-        }
-        function moveMonth(delta) {
-            window.currentDate.setMonth(window.currentDate.getMonth() + delta);
-            renderCalendar();
-        }
-
-        /* 3) 갬블링 조작 엔진 */
-        function changeNumber(index) {
-            if (window.clicked[index]) return;
-            let randomNum = Math.floor(Math.random() * 3);
-            window.values[index] = randomNum;
-            document.getElementById("num" + index).innerText = randomNum;
-            window.clicked[index] = true;
-
-            if (window.clicked[0] && window.clicked[1] && window.clicked[2]) {
-                let resultDiv = document.getElementById("result");
-                if (window.values[0] === window.values[1] && window.values[1] === window.values[2]) {
-                    resultDiv.innerText = "Success (click here to do again)";
-                    resultDiv.style.color = "blue";
-                } else {
-                    resultDiv.innerText = "fail (click here to do again)";
-                    resultDiv.style.color = "red";
-                }
-            }
-        }
-        function resetGame() {
-            window.clicked = [false, false, false];
-            window.values = [0, 0, 0];
-            for (let i = 0; i < 3; i++) {
-                document.getElementById("num" + i).innerText = "0";
-            }
-            document.getElementById("result").innerText = "";
         }
     </script>
 </body>
