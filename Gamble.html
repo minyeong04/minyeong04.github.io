@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>갬블링 게임</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px; max-width: 500px; margin: 0 auto;">
+
+    <h2 style="margin-bottom: 5px;">갬블링 게임</h2>
+    <p style="margin-top: 0; font-size: 0.95em; color: #333; line-height: 1.4;">
+        각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.
+    </p>
+    <hr style="border: 0; height: 1px; background: #ccc; margin-bottom: 20px;">
+
+    <div style="border: 1px solid #7a42a0; background-color: white; padding: 10px 20px; display: inline-block; white-space: nowrap; letter-spacing: 20px; font-size: 3.5em; font-weight: bold; color: blue; font-style: italic; user-select: none;">
+        <span id="num0" onclick="changeNumber(0)" style="cursor: pointer;">0</span>
+        <span id="num1" onclick="changeNumber(1)" style="cursor: pointer;">0</span>
+        <span id="num2" onclick="changeNumber(2)" style="cursor: pointer; margin-right: -20px;">0</span>
+    </div>
+
+    <div id="result" onclick="resetGame()" style="margin-top: 15px; font-size: 1.2em; font-style: italic; cursor: pointer; user-select: none;"></div>
+
+    <script>
+        let clicked = [false, false, false];
+        let values = [0, 0, 0];
+
+        function changeNumber(index) {
+            if (clicked[index]) return;
+
+            let randomNum = Math.floor(Math.random() * 3);
+            
+            values[index] = randomNum;
+            document.getElementById("num" + index).innerText = randomNum;
+            clicked[index] = true;
+
+            if (clicked[0] && clicked[1] && clicked[2]) {
+                let resultDiv = document.getElementById("result");
+                
+                if (values[0] === values[1] && values[1] === values[2]) {
+                    resultDiv.innerText = "Success(click here to do again)";
+                    resultDiv.style.color = "blue";
+                } else {
+                    resultDiv.innerText = "fail(click here to do again)";
+                    resultDiv.style.color = "red";
+                }
+            }
+        }
+
+        function resetGame() {
+            clicked = [false, false, false];
+            values = [0, 0, 0];
+            
+            for (let i = 0; i < 3; i++) {
+                document.getElementById("num" + i).innerText = "0";
+            }
+            
+            document.getElementById("result").innerText = "";
+        }
+    </script>
+
+</body>
+</html>
