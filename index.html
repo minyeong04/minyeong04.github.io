@@ -296,12 +296,12 @@
             transform: scale(1.05);
         }
 
-        /* 6. 크롬 모달창 아키텍처 */
+        /* 6. 크롬 모달창 아키텍처 (가독성 개선 및 다크 테마 보완) */
         .chrome-modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -312,21 +312,22 @@
             width: 100%;
             max-width: 550px;
             height: 620px;
-            background: #fff;
+            background: #1a1a1a; /* [수정] 모달 기본 배경을 어두운 톤으로 변경하여 흰색 글자 대비 최적화 */
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .chrome-header {
-            background: #dee1e6;
-            padding: 10px 16px;
+            background: #2d3136; /* [수정] 크롬 상단바도 다크 모드로 변경 */
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            border-bottom: 1px solid #cacdd1;
+            border-bottom: 1px solid #1a1a1a;
             user-select: none;
         }
 
@@ -344,13 +345,13 @@
 
         .chrome-address-bar {
             flex-grow: 1;
-            background: #f1f3f4;
+            background: #202124; /* [수정] 가상 주소창 다크 인풋화 */
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.8rem;
-            color: #5f6368;
+            color: #9aa0a6;
             font-family: monospace;
-            border: 1px solid #e0e2e5;
+            border: 1px solid #3c4043;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -360,7 +361,7 @@
             width: 100%;
             flex-grow: 1;
             border: none;
-            background: #fff;
+            background: #ffffff; /* 과제 파일들의 자체 배경을 완벽하게 출력하도록 유지 */
         }
 
         /* 7. 푸터 */
@@ -470,7 +471,7 @@
                 <div class="project-links">
                     <button class="btn-link" onclick="openChrome('calculating machine.html')">🧮 계산기 작동</button>
                     <button class="btn-link" onclick="openChrome('calendar.html')">📅 달력 작동</button>
-                    <button class="btn-link" onclick="openChrome('GambleGane.html')">🎰 갬블링 작동</button>
+                    <button class="btn-link" onclick="openChrome('Gamble.html')">🎰 갬블링 작동</button>
                 </div>
             </div>
         </div>
@@ -509,20 +510,15 @@
     </footer>
 
     <script>
-        // 현재 브라우저의 도메인(깃허브 주소 등)을 감지하여 안전하게 바인딩하는 스크립트
         function openChrome(fileName) {
             const modal = document.getElementById('chromeModal');
             const iframe = document.getElementById('chromeIframe');
             const address = document.getElementById('chromeAddress');
             
-            // 깃허브 배포 주소 및 로컬 호스트 주소 유연성 매핑
             const currentOrigin = window.location.origin;
             const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
             
-            // iframe에 상대 경로 매핑 처리
             iframe.src = "./" + fileName; 
-            
-            // 크롬 가상 주소창 문자열 가공 처리
             address.innerText = currentOrigin + currentPath + "/" + encodeURIComponent(fileName);
 
             modal.style.display = 'flex';
