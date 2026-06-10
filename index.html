@@ -235,6 +235,7 @@
             margin-top: auto;
         }
 
+        /* [수정] 버튼 내 텍스트 기본 컬러를 흰색(#ffffff)으로 명시적 고정 */
         .btn-link {
             display: inline-flex;
             align-items: center;
@@ -244,6 +245,7 @@
             border-radius: 10px;
             font-size: 0.8rem;
             font-weight: 600;
+            color: #ffffff; /* 👈 검은색 글씨 현상 해결 */
             transition: 0.3s;
             cursor: pointer;
         }
@@ -296,7 +298,7 @@
             transform: scale(1.05);
         }
 
-        /* 6. 크롬 모달창 아키텍처 (가독성 개선 및 다크 테마 보완) */
+        /* 6. 크롬 모달창 아키텍처 */
         .chrome-modal {
             display: none;
             position: fixed;
@@ -312,7 +314,7 @@
             width: 100%;
             max-width: 550px;
             height: 620px;
-            background: #1a1a1a; /* [수정] 모달 기본 배경을 어두운 톤으로 변경하여 흰색 글자 대비 최적화 */
+            background: #1a1a1a;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
@@ -322,7 +324,7 @@
         }
 
         .chrome-header {
-            background: #2d3136; /* [수정] 크롬 상단바도 다크 모드로 변경 */
+            background: #2d3136;
             padding: 12px 16px;
             display: flex;
             align-items: center;
@@ -345,7 +347,7 @@
 
         .chrome-address-bar {
             flex-grow: 1;
-            background: #202124; /* [수정] 가상 주소창 다크 인풋화 */
+            background: #202124;
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -361,7 +363,7 @@
             width: 100%;
             flex-grow: 1;
             border: none;
-            background: #ffffff; /* 과제 파일들의 자체 배경을 완벽하게 출력하도록 유지 */
+            background: #ffffff;
         }
 
         /* 7. 푸터 */
