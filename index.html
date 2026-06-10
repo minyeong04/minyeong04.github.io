@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>심민영 포트폴리오</title>
+    <title>심민영</title>
     <style>
         /* 1. 기본 스타일 설정 */
         * {
@@ -29,7 +29,7 @@
             color: inherit;
         }
 
-        /* 2. 네비게이션 */
+        /* 2. 네비게이션 (Projects와 과제 메뉴 완벽 분리) */
         nav {
             position: sticky;
             top: 0;
@@ -174,9 +174,10 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* 개별 대단위 컨테이너 레이아웃 (마진 분리) */
+        /* 개별 대단위 컨테이너 레이아웃 (스크롤 시 네비 상단바 여백 확보를 위해 scroll-margin-top 설정) */
         .container-block {
             margin-bottom: 60px;
+            scroll-margin-top: 100px; 
         }
         
         .container-block:last-child {
@@ -203,7 +204,7 @@
             margin: 0 auto;
         }
 
-        /* 과제용 전용 3열 미니 그리드 (가로 배치 최적화) */
+        /* 과제용 전용 3열 미니 그리드 */
         .assignment-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -278,7 +279,7 @@
             color: #ffffff;
             transition: 0.3s;
             cursor: pointer;
-            width: 100%; /* 버튼 가독성을 위해 전체 넓이화 */
+            width: 100%;
         }
 
         .btn-link:hover {
@@ -304,6 +305,7 @@
         .skills {
             padding: 100px 10%;
             text-align: center;
+            scroll-margin-top: 60px;
         }
 
         .skill-list {
@@ -429,11 +431,11 @@
 <body>
 
     <nav>
-        <div class="nav-logo"><span>PORTFOLIO</span> SIM MIN YEONG</div>
+        <div class="nav-logo"><span>HALLA</span> SIM MIN YEONG</div>
         <ul class="nav-menu">
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects & 과제</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#major-projects">Projects</a></li> <li><a href="#js-assignments">
+Assignment</a></li>     <li><a href="#skills">Skills</a></li>
         </ul>
     </nav>
 
@@ -463,10 +465,10 @@
         </div>
     </section>
 
-    <section id="projects" class="projects">
-        <h3 class="section-title">PROJECTS & ASSIGNMENTS</h3>
+    <section class="projects">
+        <h3 class="section-title">PORTFOLIO WORK</h3>
         
-        <div class="container-block">
+        <div id="major-projects" class="container-block">
             <div class="container-subtitle">🚀 Major Projects</div>
             <div class="project-grid">
                 <div class="project-card">
@@ -502,7 +504,7 @@
             </div>
         </div>
 
-        <div class="container-block" style="margin-top: 80px;">
+        <div id="js-assignments" class="container-block" style="margin-top: 80px;">
             <div class="container-subtitle">⚡ JavaScript Assignments</div>
             <div class="assignment-grid">
                 <div class="project-card">
@@ -516,7 +518,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #111, #ec4899; font-size: 2rem;">📅</div>
+                    <div class="project-image" style="background: linear-gradient(135deg, #111, #ec4899); font-size: 2rem;">📅</div>
                     <span class="card-badge" style="background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.3); color: #f472b6;">Calendar API</span>
                     <h4>동적 달력 프로그램</h4>
                     <p>Date 객체와 윤년 알고리즘을 활용하여 이전/다음 달로 유연하게 넘어가는 동적 캘린더 인터페이스입니다.</p>
