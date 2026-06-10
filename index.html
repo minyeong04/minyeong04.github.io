@@ -12,7 +12,7 @@
             box-sizing: border-box;
         }
 
-        /* 부드러운 스크롤 이동 효과 추가 */
+        /* 부드러운 스크롤 이동 효과 */
         html {
             scroll-behavior: smooth;
         }
@@ -30,7 +30,7 @@
             color: inherit;
         }
 
-        /* 2. [수정] 네비게이션 업그레이드 */
+        /* 2. 네비게이션 */
         nav {
             position: sticky;
             top: 0;
@@ -57,7 +57,6 @@
             margin-right: 6px;
         }
 
-        /* 상단 네비게이션 메뉴 스타일 */
         .nav-menu {
             display: flex;
             gap: 30px;
@@ -73,7 +72,6 @@
             position: relative;
         }
 
-        /* 메뉴 호버 시 하단 라인 애니메이션 */
         .nav-menu a::after {
             content: '';
             position: absolute;
@@ -95,7 +93,7 @@
 
         /* 3. 히어로 섹션 */
         .hero {
-            padding: 140px 10% 120px 10%; /* 상단 바 두께 고려해 패딩 조절 */
+            padding: 140px 10% 120px 10%;
             text-align: center;
             background: radial-gradient(circle at center, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
         }
@@ -339,7 +337,6 @@
 </head>
 <body>
 
-    <!-- 상단 네비게이션 바 메뉴 추가 완료 -->
     <nav>
         <div class="nav-logo"><span>PORTFOLIO</span> SIM MIN YEONG</div>
         <ul class="nav-menu">
@@ -349,22 +346,30 @@
         </ul>
     </nav>
 
-    <!-- 각 섹션에 id 부여 완료 -->
     <section id="about" class="hero">
         <span class="badge">COMPUTER ENGINEERING</span>
         <h2>DESIGNING<br><span>USER EXPERIENCE</span></h2>
         
         <div class="info-grid">
+            <!-- [수정] Education 카드: 졸업 예정 정보 추가 -->
             <div class="info-card">
                 <h3>Education</h3>
                 <p>한라대학교 컴퓨터공학과</p>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 5px;">ID: 202334015</p>
-                <p style="font-size: 0.85rem; color: #10b981; margin-top: 8px; font-weight: 600;">⚡ 2026 하계 AI 부트캠프 참여 예정</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 4px;">ID: 202334015</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 4px; font-weight: 500;">🎓 2027년 2월 졸업 예정</p>
+                <p style="font-size: 0.85rem; color: #10b981; margin-top: 12px; font-weight: 600;">⚡ 2026 하계 AI 부트캠프 참여 예정</p>
             </div>
+            <!-- [수정] Interests & Contact 카드: 이메일 추가 및 이메일 링크 활성화 -->
             <div class="info-card">
-                <h3>Interests</h3>
+                <h3>Interests & Contact</h3>
                 <p>앱/웹 프론트 제작</p>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 5px;">UI/UX & Interactive Design</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 4px;">UI/UX & Interactive Design</p>
+                <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);">
+                    <p style="font-size: 0.75rem; color: #10b981; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Email</p>
+                    <a href="mailto:simmy0416@naver.com" style="font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 600; transition: 0.2s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">
+                        📧 simmy0416@naver.com
+                    </a>
+                </div>
             </div>
         </div>
     </section>
