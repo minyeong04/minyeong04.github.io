@@ -152,7 +152,7 @@
             margin-bottom: 12px;
         }
 
-        /* 4. 프로젝트 섹션 */
+        /* 4. 프로젝트 및 과제 통합 섹션 */
         .projects {
             padding: 100px 10%;
             background-color: #050505;
@@ -161,7 +161,7 @@
         .section-title {
             font-size: 2rem;
             font-weight: 900;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -174,10 +174,40 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* 개별 대단위 컨테이너 레이아웃 (마진 분리) */
+        .container-block {
+            margin-bottom: 60px;
+        }
+        
+        .container-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .container-subtitle {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* 그리드 정의 */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 과제용 전용 3열 미니 그리드 (가로 배치 최적화) */
+        .assignment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -235,19 +265,20 @@
             margin-top: auto;
         }
 
-        /* [수정] 버튼 내 텍스트 기본 컬러를 흰색(#ffffff)으로 명시적 고정 */
         .btn-link {
             display: inline-flex;
             align-items: center;
-            padding: 8px 16px;
+            justify-content: center;
+            padding: 10px 18px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            font-size: 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: #ffffff; /* 👈 검은색 글씨 현상 해결 */
+            color: #ffffff;
             transition: 0.3s;
             cursor: pointer;
+            width: 100%; /* 버튼 가독성을 위해 전체 넓이화 */
         }
 
         .btn-link:hover {
@@ -385,12 +416,13 @@
             letter-spacing: 1px;
         }
 
+        /* 8. 미디어 쿼리 최적화 */
         @media (max-width: 768px) {
             nav { padding: 0 5%; }
             .nav-menu { gap: 15px; }
             .nav-menu a { font-size: 0.8rem; }
             .hero h2 { font-size: 3rem; }
-            .project-grid { grid-template-columns: 1fr; }
+            .project-grid, .assignment-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -400,7 +432,7 @@
         <div class="nav-logo"><span>PORTFOLIO</span> SIM MIN YEONG</div>
         <ul class="nav-menu">
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#projects">Projects & 과제</a></li>
             <li><a href="#skills">Skills</a></li>
         </ul>
     </nav>
@@ -432,48 +464,75 @@
     </section>
 
     <section id="projects" class="projects">
-        <h3 class="section-title">PROJECTS</h3>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="project-image">🖨️</div>
-                <span class="card-badge">Capstone Design</span>
-                <h4>3D 프린터 대행 서비스</h4>
-                <p>졸업작품 | 사용자 도면 기반 제작 및 배송 플랫폼 개발. <strong>풀스택 개발 및 UI/UX 디자인</strong>을 전담하여 메인 서비스 로직과 인터페이스를 구축했습니다.</p>
-                <div class="project-links">
-                    <a href="https://www.makertion.com/" target="_blank" rel="noopener noreferrer" class="btn-link">🌐 Live Demo</a>
-                    <a href="https://github.com/TombRaiders" target="_blank" rel="noopener noreferrer" class="btn-link">📦 GitHub</a>
+        <h3 class="section-title">PROJECTS & ASSIGNMENTS</h3>
+        
+        <div class="container-block">
+            <div class="container-subtitle">🚀 Major Projects</div>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-image">🖨️</div>
+                    <span class="card-badge">Capstone Design</span>
+                    <h4>3D 프린터 대행 서비스</h4>
+                    <p>졸업작품 | 사용자 도면 기반 제작 및 배송 플랫폼 개발. <strong>풀스택 개발 및 UI/UX 디자인</strong>을 전담하여 메인 서비스 로직과 인터페이스를 구축했습니다.</p>
+                    <div class="project-links">
+                        <a href="https://www.makertion.com/" target="_blank" rel="noopener noreferrer" class="btn-link">🌐 Live Demo</a>
+                        <a href="https://github.com/TombRaiders" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 8px;">📦 GitHub</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(45deg, #111, #064e3b);">🎮</div>
-                <span class="card-badge">3D Game</span>
-                <h4>3D 횡스크롤 게임</h4>
-                <p>Unity | 3D 액션 게임 제작 프로젝트. <strong>메인 디자인 담당</strong>으로 비주얼 정체성과 UI를 구축했습니다.</p>
-                <div class="project-links">
-                    <a href="https://simmy0416.tistory.com/" target="_blank" rel="noopener noreferrer" class="btn-link">🌐 Tistory Blog</a>
+                
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(45deg, #111, #064e3b);">🎮</div>
+                    <span class="card-badge">3D Game</span>
+                    <h4>3D 횡스크롤 게임</h4>
+                    <p>Unity | 3D 액션 게임 제작 프로젝트. <strong>메인 디자인 담당</strong>으로 비주얼 정체성과 UI를 구축했습니다.</p>
+                    <div class="project-links">
+                        <a href="https://simmy0416.tistory.com/" target="_blank" rel="noopener noreferrer" class="btn-link">🌐 Tistory Blog</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #111, #1e3a8a);">👾</div>
-                <span class="card-badge">1학년 2학기</span>
-                <h4>2D 횡스크롤 게임</h4>
-                <p>Team Project | 팀 내에서 <strong>디자인 총괄</strong>을 맡아 게임의 전체적인 아트 콘셉트 조율, 2D 그래픽 자원 및 사용자 인터페이스(UI) 디자인을 전담하여 프로젝트를 이끌었습니다.</p>
-                <div class="project-links">
-                    <span class="btn-link" style="cursor: default; opacity: 0.6;">🎯 Design Director</span>
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #111, #1e3a8a);">👾</div>
+                    <span class="card-badge">1학년 2학기</span>
+                    <h4>2D 횡스크롤 게임</h4>
+                    <p>Team Project | 팀 내에서 <strong>디자인 총괄</strong>을 맡아 게임의 전체적인 아트 콘셉트 조율, 2D 그래픽 자원 및 사용자 인터페이스(UI) 디자인을 전담하여 프로젝트를 이끌었습니다.</p>
+                    <div class="project-links">
+                        <span class="btn-link" style="cursor: default; opacity: 0.6;">🎯 Design Director</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #111, #4c1d95);">⚡</div>
-                <span class="card-badge">Class Assignment</span>
-                <h4>웹프로그래밍(JAVA) 과제</h4>
-                <p>University Works | DOM 동적 제어 및 이벤트 처리를 학습하기 위한 자바스크립트 애플리케이션 시리즈입니다. 깃허브 저장소 내부의 HTML 파일을 연동하여 브라우저 환경에서 시연합니다.</p>
-                <div class="project-links">
-                    <button class="btn-link" onclick="openChrome('calculating machine.html')">🧮 계산기 </button>
-                    <button class="btn-link" onclick="openChrome('calendar.html')">📅 달력 </button>
-                    <button class="btn-link" onclick="openChrome('Gamble.html')">🎰 갬블링 </button>
+        <div class="container-block" style="margin-top: 80px;">
+            <div class="container-subtitle">⚡ JavaScript Assignments</div>
+            <div class="assignment-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #111, #3b82f6); font-size: 2rem;">🧮</div>
+                    <span class="card-badge" style="background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;">DOM Control</span>
+                    <h4>동적 계산기 프로그램</h4>
+                    <p>자바스크립트를 이용해 수식을 동적으로 분석하고 이벤트를 바인딩하여 제어하는 계산기 앱입니다.</p>
+                    <div class="project-links">
+                        <button class="btn-link" onclick="openChrome('calculating machine.html')">실행하기</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #111, #ec4899; font-size: 2rem;">📅</div>
+                    <span class="card-badge" style="background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.3); color: #f472b6;">Calendar API</span>
+                    <h4>동적 달력 프로그램</h4>
+                    <p>Date 객체와 윤년 알고리즘을 활용하여 이전/다음 달로 유연하게 넘어가는 동적 캘린더 인터페이스입니다.</p>
+                    <div class="project-links">
+                        <button class="btn-link" onclick="openChrome('calendar.html')">실행하기</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #111, #8b5cf6); font-size: 2rem;">🎰</div>
+                    <span class="card-badge" style="background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.3); color: #a78bfa;">Math Random</span>
+                    <h4>갬블링 난수 게임</h4>
+                    <p>클릭 이벤트 시 각각의 컴포넌트에 무작위 난수를 주입하고 매칭 성공 여부를 판별하는 미니 게임입니다.</p>
+                    <div class="project-links">
+                        <button class="btn-link" onclick="openChrome('Gamble.html')">실행하기</button>
+                    </div>
                 </div>
             </div>
         </div>
