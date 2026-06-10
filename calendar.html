@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>동적 달력 프로그램</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px; max-width: 450px; margin: 0 auto;">
+
+    <h2 style="text-align: center; color: #333;">자바스크립트 달력</h2>
+    <hr style="border: 0; height: 1px; background: #ccc; margin-bottom: 20px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 10px;">
+        <button onclick="moveMonth(-1)" style="font-size: 1.2em; padding: 5px 10px; cursor: pointer; background: #f0f0f0; border: 1px solid #ccc;">◀</button>
+        <h3 id="calendarTitle" style="margin: 0; font-size: 1.5em; color: #222;">2026년 06월</h3>
+        <button onclick="moveMonth(1)" style="font-size: 1.2em; padding: 5px 10px; cursor: pointer; background: #f0f0f0; border: 1px solid #ccc;">▶</button>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <thead>
+            <tr style="background-color: #eee; height: 40px; font-weight: bold;">
+                <th style="color: red; width: 14.2%;">일</th>
+                <th style="width: 14.2%;">월</th>
+                <th style="width: 14.2%;">화</th>
+                <th style="width: 14.2%;">수</th>
+                <th style="width: 14.2%;">목</th>
+                <th style="width: 14.2%;">금</th>
+                <th style="color: blue; width: 14.2%;">토</th>
+            </tr>
+        </thead>
+        <tbody id="calendarBody" style="font-size: 1.1em;">
+            </tbody>
+    </table>
+
+    <script>
+        // 현재 날짜 기준 객체 생성
+        let currentDate = new Date();
+
+        function renderCalendar() {
+            let year = currentDate.getFullYear();
+            let month = currentDate.getMonth(); // 0 (1월) ~ 11 (12월)
+
+            // 타이틀 변경 (동적 변화)
+            document.getElementById("calendarTitle").innerText = year + "년 " + String(month + 1).padStart(2, '0') + "월";
+
+            // 이번 달의 첫 번째 날 요일 찾기 (0: 일요일 ~ 6: 토요일)
+            let firstDayIndex = new Date(year, month, 1).getDay();
+            // 이번 달의 마지막 날짜(총 일수) 구하기
+            let lastDate = new Date(year, month + 1, 0).getDate();
+
+            let calendarBody = document.getElementById("calendarBody");
+            calendarBody.innerHTML = ""; // 기존 달력 내용 초기화
+
+            let dateCounter = 1;
+            let htmlHTML = "";
+
+            // 주 단위 반복 행 (최대 6주)
+            for (let i = 0; i < 6; i++) {
+                let row = "<tr style='height: 50px; border-bottom: 1px solid #eee;'>";
+                
+                // 일요일부터 토요일까지 칸 채우기
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDayIndex) {
+                        // 첫 주의 시작일 전 빈 칸 처리
+                        row += "<td></td>";
+                    } else if (dateCounter > lastDate) {
+                        // 마지막 날짜를 넘어가면 빈 칸 처리
+                        row += "<td></td>";
+                    } else {
+                        // 토요일/일요일 색상 구분 적용
+                        let colorStyle = "";
+                        if (j === 0) colorStyle = "color: red;";
+                        else if (j === 6) colorStyle = "color: blue;";
+
+                        row += `<td style='${colorStyle}'>${dateCounter}</td>`;
+                        dateCounter++;
+                    }
+                }
+                row += "</tr>";
+                htmlHTML += row;
+
+                if (dateCounter > lastDate) break; // 달력 날짜가 모두 채워지면 루프 종료
+            }
+            
+            // 완성된 주(row) 항목들을 tbody 안에 주입 (DOM 동적 제어)
+            calendarBody.innerHTML = htmlHTML;
+        }
+
+        // 월 이동 기능 (-1은 이전달, 1은 다음달)
+        function moveMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderCalendar(); // 바뀐 월 데이터로 화면 갱신
+        }
+
+        // 페이지 최초 로드 시 달력 그리기 호출
+        renderCalendar();
+    </script>
+
+</body>
+</html>
