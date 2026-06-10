@@ -134,43 +134,110 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* [수정] 2열 배치를 염두에 둔 그리드 크기 및 여백 최적화 */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            max-width: 1200px; /* 전체 너비를 제한하여 안정적인 배치 유도 */
+            margin: 0 auto;
         }
 
         .project-card {
-            group;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 24px; /* 내부에 카드 여백 부여로 컴포넌트 크기 축소 효과 */
+            border-radius: 24px;
+            transition: 0.4s ease;
+        }
+        
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(16, 185, 129, 0.2);
         }
 
         .project-image {
             aspect-ratio: 16/9;
             background: #111;
-            border-radius: 20px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 2.5rem; /* 살짝 크기 축소 */
             border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             transition: 0.4s ease;
         }
 
         .project-card:hover .project-image {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
             border-color: rgba(16, 185, 129, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 진행 예정 카드용 스타일 */
+        .project-card.upcoming .project-image {
+            border-style: dashed;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.01);
+        }
+        
+        .project-card.upcoming:hover .project-image {
+            border-color: rgba(16, 185, 129, 0.6);
         }
 
         .project-card h4 {
-            font-size: 1.5rem;
+            font-size: 1.35rem; /* 타이틀 크기 소폭 조절 */
             margin-bottom: 12px;
         }
 
+        /* [수정] 텍스트 하단의 가로 마진(여백)을 35px로 넓혀서 버튼과의 간격 확보 */
         .project-card p {
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            margin-bottom: 35px; 
+            flex-grow: 1; /* 카드 높이가 달라도 버튼이 늘 밑에 고정되도록 유도 */
+        }
+
+        /* 프로젝트 링크 버튼 영역 */
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto; /* 하단 밀착 고정 */
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-link:hover {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+            color: #10b981;
+        }
+        
+        .card-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            align-self: flex-start;
         }
 
         /* 5. 스킬 섹션 */
@@ -225,6 +292,7 @@
         @media (max-width: 768px) {
             nav { padding: 0 5%; }
             .hero h2 { font-size: 3rem; }
+            .project-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -243,6 +311,7 @@
                 <h3>Education</h3>
                 <p>한라대학교 컴퓨터공학과</p>
                 <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 5px;">ID: 202334015</p>
+                <p style="font-size: 0.85rem; color: #10b981; margin-top: 8px; font-weight: 600;">⚡ 2026 하계 AI 부트캠프 참여 예정</p>
             </div>
             <div class="info-card">
                 <h3>Interests</h3>
@@ -256,13 +325,11 @@
     <section class="projects">
         <h3 class="section-title">PROJECTS</h3>
         <div class="project-grid">
-            <!-- 3D 프린터 대행 서비스 카드 -->
+            <!-- 1. 3D 프린터 대행 서비스 카드 -->
             <div class="project-card">
                 <div class="project-image">🖨️</div>
                 <h4>3D 프린터 대행 서비스</h4>
-                <!-- 담당 역할 부분을 풀스택 및 UI/UX로 명확하게 수정했습니다 -->
                 <p>졸업작품 | 사용자 도면 기반 제작 및 배송 플랫폼 개발. <strong>풀스택 개발 및 UI/UX 디자인</strong>을 전담하여 메인 서비스 로직과 인터페이스를 구축했습니다.</p>
-                <!-- 새 창으로 이동하는 링크 버튼 -->
                 <div class="project-links">
                     <a href="https://www.makertion.com/" target="_blank" rel="noopener noreferrer" class="btn-link">
                         🌐 Live Demo
@@ -273,18 +340,20 @@
                 </div>
             </div>
             
-            <!-- 3D 횡스크롤 게임 카드 -->
+            <!-- 2. 3D 횡스크롤 게임 카드 -->
             <div class="project-card">
                 <div class="project-image" style="background: linear-gradient(45deg, #111, #064e3b);">🎮</div>
                 <h4>3D 횡스크롤 게임</h4>
                 <p>Unity | 3D 액션 게임 제작 프로젝트. <strong>메인 디자인 담당</strong>으로 비주얼 정체성과 UI를 구축했습니다.</p>
-                <div class="project-links"></div>
+                <div class="project-links">
                     <a href="https://simmy0416.tistory.com/" target="_blank" rel="noopener noreferrer" class="btn-link">
                         🌐 Tistory Blog
                     </a>
+                </div>
             </div>
-        </div>
-        <div class="project-card upcoming">
+
+            <!-- 3. AI 부트캠프 진행 예정 카드 -->
+            <div class="project-card upcoming">
                 <div class="project-image">🧠</div>
                 <span class="card-badge">2026 Summer</span>
                 <h4>AI 부트캠프 연계 프로젝트</h4>
@@ -295,6 +364,7 @@
                     </span>
                 </div>
             </div>
+        </div>
     </section>
 
     <section class="skills">
@@ -309,8 +379,8 @@
     </section>
 
     <footer>
-        <div class="footer-logo">SIM MIN YEONG</div>
-        <p class="copyright">© 2026 SIM MIN YEONG. ALL RIGHTS RESERVED.</p>
+        <div class="footer-logo">SIM MIN YOUNG</div>
+        <p class="copyright">© 2026 SIM MIN YOUNG. ALL RIGHTS RESERVED.</p>
     </footer>
 
 </body>
